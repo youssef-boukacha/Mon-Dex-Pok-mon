@@ -6,7 +6,7 @@
   <title>Mon Dex</title>
   <link rel="stylesheet" href="./dist/output.css">
 </head>
-<body class="bg-ground font-body text-ink">
+<body class=" font-body text-ink">
 
   <!-- ===================== EN-TÊTE ===================== -->
   <header class="bg-red-500 text-white">
@@ -55,7 +55,7 @@
   <main class="mx-auto flex max-w-7xl flex-col gap-8 px-8 py-8">
 
     <!-- ===================== RECHERCHE ET FILTRES ===================== -->
-    <section aria-label="Recherche et filtres" class="flex flex-col gap-4">
+    <section aria-label="Recherche et filtres" class="flex flex-col gap-4 bg-[url('../images/bg_projet.jpg')] w-full ">
       <div class="flex flex-wrap items-end justify-between gap-4 ">
         <h1 class="font-display text-4xl font-extrabold">Trouver une créature</h1>
         <label class="flex w-full max-w-md flex-col gap-1 text-sm font-bold">
@@ -88,11 +88,11 @@
     <div class=" flex flex-col  items-start" >
 
       <!-- ===================== GRILLE DES CRÉATURES ===================== -->
-      <section id="grid" aria-label="Créatures" class="flex min-w-0 flex-1 flex-col gap-5 mx-auto">
+      <section id="grid" aria-label="Créatures" class="flex min-w-0 flex-1 flex-col gap-5 mx-auto lg:grid lg:grid-cols-3 md:grid md:grid-cols-3">
 
         <!-- Carte écrite à la main : à remplacer par des cartes générées en JS (Partie 2) -->
-        <article class="flex flex-col gap-3 rounded-card bg-red-500 p-3 pb-4">
-          <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light transition-transform hover:-translate-y-1">
+        <article class="flex flex-col gap-3 rounded-md bg-red-500 p-3 pb-4">
+          <div class="relative flex h-36 items-center justify-center rounded-xl  bg-white transition-transform hover:-translate-y-1">
             <svg aria-hidden="true" class="h-14 w-14 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16c0-5 3.5-9 8-9s8 4 8 9"></path><circle cx="9" cy="12" r="1"></circle><circle cx="15" cy="12" r="1"></circle><path d="M7 7 5 3M17 7l2-4"></path></svg>
             <span class="absolute left-3 top-2 font-mono text-sm text-muted border border-2px  rounded-md text-white">#001</span>
           </div>
@@ -106,8 +106,8 @@
         </article>
 
         <!-- Carte écrite à la main : à remplacer par des cartes générées en JS (Partie 2) -->
-        <article class="flex flex-col gap-3 rounded-card bg-red-500 p-3 pb-4">
-          <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light transition-transform hover:-translate-y-1">
+        <article class="flex flex-col gap-3 rounded-md bg-red-500 p-3 pb-4">
+          <div class="relative flex h-36 items-center justify-center rounded-xl bg-white transition-transform hover:-translate-y-1">
             <svg aria-hidden="true" class="h-14 w-14 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16c0-5 3.5-9 8-9s8 4 8 9"></path><circle cx="9" cy="12" r="1"></circle><circle cx="15" cy="12" r="1"></circle><path d="M7 7 5 3M17 7l2-4"></path></svg>
             <span class="absolute left-3 top-2 font-mono text-sm text-muted border border-2px  rounded-md text-white">#002</span>
           </div>
@@ -120,8 +120,8 @@
         </article>
 
         <!-- Carte écrite à la main : à remplacer par des cartes générées en JS (Partie 2) -->
-        <article class="flex flex-col gap-3 rounded-card bg-red-500 p-3 pb-4">
-          <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light transition-transform hover:-translate-y-1">
+        <article class="flex flex-col gap-3 rounded-md bg-red-500 p-3 pb-4">
+          <div class="relative flex h-36 items-center justify-center rounded-xl  bg-white transition-transform hover:-translate-y-1">
             <svg aria-hidden="true" class="h-14 w-14 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16c0-5 3.5-9 8-9s8 4 8 9"></path><circle cx="9" cy="12" r="1"></circle><circle cx="15" cy="12" r="1"></circle><path d="M7 7 5 3M17 7l2-4"></path></svg>
             <span class="absolute left-3 top-2 font-mono text-sm text-muted border border-2px  rounded-md text-white ">#003</span>
           </div>
@@ -134,8 +134,8 @@
         </article>
 
         <!-- Carte écrite à la main : à remplacer par des cartes générées en JS (Partie 2) -->
-        <article class="flex flex-col gap-3 rounded-card bg-red-500 p-3 pb-4">
-          <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light transition-transform hover:-translate-y-1">
+        <article class="flex flex-col gap-3 rounded-md bg-red-500 p-3 pb-4">
+          <div class="relative flex h-36 items-center justify-center rounded-xl  bg-white transition-transform hover:-translate-y-1">
             <svg aria-hidden="true" class="h-14 w-14 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16c0-5 3.5-9 8-9s8 4 8 9"></path><circle cx="9" cy="12" r="1"></circle><circle cx="15" cy="12" r="1"></circle><path d="M7 7 5 3M17 7l2-4"></path></svg>
             <span class="absolute left-3 top-2 font-mono text-sm text-muted border border-2px  rounded-md text-white ">#004</span>
           </div>
@@ -148,8 +148,8 @@
         </article>
 
         <!-- Carte écrite à la main : à remplacer par des cartes générées en JS (Partie 2) -->
-        <article class="flex flex-col gap-3 rounded-card bg-red-500 p-3 pb-4">
-          <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light transition-transform hover:-translate-y-1">
+        <article class="flex flex-col gap-3 rounded-md bg-red-500 p-3 pb-4">
+          <div class="relative flex h-36 items-center justify-center rounded-xl  bg-white transition-transform hover:-translate-y-1">
             <svg aria-hidden="true" class="h-14 w-14 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16c0-5 3.5-9 8-9s8 4 8 9"></path><circle cx="9" cy="12" r="1"></circle><circle cx="15" cy="12" r="1"></circle><path d="M7 7 5 3M17 7l2-4"></path></svg>
             <span class="absolute left-3 top-2 font-mono text-sm text-muted border border-2px  rounded-md text-white ">#005</span>
           </div>
@@ -162,8 +162,8 @@
         </article>
 
         <!-- Carte écrite à la main : à remplacer par des cartes générées en JS (Partie 2) -->
-        <article class="flex flex-col gap-3 rounded-card bg-red-500 p-3 pb-4">
-          <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light transition-transform hover:-translate-y-1">
+        <article class="flex flex-col gap-3 rounded-md bg-red-500 p-3 pb-4">
+          <div class="relative flex h-36 items-center justify-center rounded-xl  bg-white transition-transform hover:-translate-y-1">
             <svg aria-hidden="true" class="h-14 w-14 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16c0-5 3.5-9 8-9s8 4 8 9"></path><circle cx="9" cy="12" r="1"></circle><circle cx="15" cy="12" r="1"></circle><path d="M7 7 5 3M17 7l2-4"></path></svg>
             <span class="absolute left-3 top-2 font-mono text-sm text-muted border border-2px  rounded-md text-white">#006</span>
           </div>
@@ -205,7 +205,7 @@
       </aside>
     </div>
      <!-- ===================== MON ÉQUIPE (INCOMPLÈTE) ===================== -->
-        <section id="team" aria-label="Mon équipe" class="rounded-card bg-white p-6">
+        <section id="team" aria-label="Mon équipe" class="rounded-card  p-6">
          <div class="">
          
           <h2 class="font-display text-2xl font-extrabold text-center pb-10">Mon équipe</h2>
@@ -245,7 +245,7 @@
         </section>
 
     <!-- ===================== FORMULAIRE DE CRÉATION ===================== -->
-    <section id="create" aria-label="Nouvelle créature" class="flex flex-col gap-6 rounded-card bg-white p-8">
+    <section id="create" aria-label="Nouvelle créature" class="flex flex-col gap-6 rounded-card  p-8">
       <div>
         <h2 class="font-display text-3xl font-extrabold">Nouvelle créature</h2>
         <p class="text-muted">Chaque champ est vérifié avant l'ajout de la créature.</p>
