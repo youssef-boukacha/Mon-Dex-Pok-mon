@@ -20,11 +20,35 @@
           <p class="text-sm text-gray-300">[Pokémon] · <span id="creature-count">6</span> créatures</p>
         </div>
       </div>
-      <nav aria-label="Navigation principale" class="flex flex-wrap gap-2">
-        <a href="#grid" class="rounded-full bg-white/10 px-4 py-2">Créatures</a>
-        <a href="#team" class="rounded-full bg-white/10 px-4 py-2">Mon équipe · <span id="team-count">0</span>/6</a>
-        <a href="#create" class="rounded-full bg-white px-4 py-2 font-bold text-ink">+ Nouvelle créature</a>
+        
+<div class="relative flex items-center lg:hidden">
+      <input type="checkbox" id="menu-toggle" class="peer hidden" />
+
+      <label for="menu-toggle" class="cursor-pointer p-2 text-white hover:text-brand transition-colors">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </label>
+
+      <nav class="hidden peer-checked:flex flex-col absolute top-full right-0 z-50 w-64 bg-red-500 border-2 border-white/10 shadow-xl p-4 space-y-3 rounded-2xl mt-2">
+        <a href="#grid" class="rounded-full bg-white/10 px-4 py-2 text-center text-white">Créatures</a>
+        <a href="#team" class="rounded-full bg-white/10 px-4 py-2 text-center text-white">Mon équipe · <span id="team-count">0</span>/6</a>
+        <a href="#create" class="rounded-full bg-white px-4 py-2 font-bold text-ink text-center">+ Nouvelle créature</a>
       </nav>
+    </div>
+
+    <nav aria-label="Navigation principale" class="hidden lg:flex flex-wrap gap-2 items-center">
+      <a href="#grid" class="rounded-full bg-white/10 px-4 py-2">Créatures</a>
+      <a href="#team" class="rounded-full bg-white/10 px-4 py-2">Mon équipe · <span id="team-count">0</span>/6</a>
+      <a href="#create" class="rounded-full bg-white px-4 py-2 font-bold text-ink">+ Nouvelle créature</a>
+    </nav>
+
+  </div>
+</div>
+
+    
+    </div>
+    
     </div>
   </header>
 
@@ -156,8 +180,8 @@
       <aside class="flex w-[420px] shrink-0 flex-col gap-6">
 
         <!-- ===================== PANNEAU DE DÉTAIL ===================== -->
-        <section id="detail" aria-label="Détail de la créature" class=" hidden gap-4 rounded-card border-2 border-ink bg-white p-6">
-          <div class="flex items-center justify-between">
+        <section id="detail" aria-label="Détail de la créature" class=" hidden rounded-card border-2 border-ink bg-white p-6">
+          <div class="flex items-center justify-between ">
             <span class="font-mono text-sm text-muted">#003 · Détail</span>
             <button type="button" aria-label="Fermer le détail" class="btn-outline w-11 px-0">✕</button>
           </div>
@@ -277,7 +301,7 @@
   </main>
 
   <footer class="mx-auto max-w-7xl px-8 pb-10 text-sm text-muted">
-    Images : [source des images de votre univers]. Projet de fans réalisé dans le cadre d'une formation.
+    Images : pokebip.com. Projet de fans réalisé dans le cadre d'une formation.
   </footer>
 
   <!-- data.js (à créer) doit être chargé AVANT script.js -->
