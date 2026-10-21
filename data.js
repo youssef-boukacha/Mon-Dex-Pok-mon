@@ -68,7 +68,7 @@ id: "#005",
 {
 id: "#006",                                 
   name: "Sabelette d’Alola ",                              
-  type: "Glqce, Acier",                                  
+  type: "Glace, Acier",                                  
    level: "Stade spécial",                                
    stats: { hp:50, attack:75, defence: 90},  
    image: "https://www.pokebip.com/pokedex-images/300/10101.png?v=2.2",         

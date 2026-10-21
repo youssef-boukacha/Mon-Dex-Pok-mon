@@ -9,7 +9,7 @@
 <body class="bg-ground font-body text-ink">
 
   <!-- ===================== EN-TÊTE ===================== -->
-  <header class="bg-ink text-white">
+  <header class="bg-red-500 text-white">
     <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-8 py-5">
       <div class="flex items-center gap-3">
         <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand">
@@ -17,7 +17,7 @@
         </div>
         <div>
           <p class="font-display text-2xl font-extrabold leading-none">Mon Dex</p>
-          <p class="text-sm text-gray-300">[Votre univers] · <span id="creature-count">6</span> créatures</p>
+          <p class="text-sm text-gray-300">[Pokémon] · <span id="creature-count">6</span> créatures</p>
         </div>
       </div>
       <nav aria-label="Navigation principale" class="flex flex-wrap gap-2">
@@ -32,14 +32,25 @@
 
     <!-- ===================== RECHERCHE ET FILTRES ===================== -->
     <section aria-label="Recherche et filtres" class="flex flex-col gap-4">
-      <div class="flex flex-wrap items-end justify-between gap-4">
+      <div class="flex flex-wrap items-end justify-between gap-4 ">
         <h1 class="font-display text-4xl font-extrabold">Trouver une créature</h1>
         <label class="flex w-full max-w-md flex-col gap-1 text-sm font-bold">
           Rechercher par nom
           <input id="search" type="search" placeholder="ex. Mossling" class="field font-normal">
         </label>
       </div>
-      <div id="filters" role="group" aria-label="Filtrer par type" class="flex h-11 flex-nowrap gap-2 overflow-hidden">
+      <div class="block lg:hidden w-full">
+        <select class="field w-full font-normal">
+          <option value=" Select"> Select</option>
+          <option value="Feu">Feu</option>
+          <option value="Eau">Eau</option>
+          <option value="Plante">Plante</option>
+          <option value="Élektek">Élektek</option>
+          <option value="Glace">Glace</option>
+          <option value="Ténèbres">Ténèbres</option>
+        </select>
+</div>
+      <div id="filters" role="group" aria-label="Filtrer par type" class="hidden lg:flex gap-2 overflow-hidden">
           <button type="button" class="chip bg-ink text-white border-ink shrink-0">Tous</button>
           <button type="button" class="chip shrink-0">Feu</button>
           <button type="button" class="chip shrink-0">Eau</button>
@@ -50,90 +61,91 @@
       </div>
     </section>
 
-    <div class="flex gap-8 items-start">
+    <div class=" flex flex-col  items-start" >
 
       <!-- ===================== GRILLE DES CRÉATURES ===================== -->
-      <section id="grid" aria-label="Créatures" class="grid min-w-0 flex-1 grid-cols-3 gap-5">
+      <section id="grid" aria-label="Créatures" class="flex min-w-0 flex-1 flex-col gap-5 mx-auto">
 
         <!-- Carte écrite à la main : à remplacer par des cartes générées en JS (Partie 2) -->
-        <article class="flex flex-col gap-3 rounded-card bg-white p-3 pb-4">
-          <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light">
+        <article class="flex flex-col gap-3 rounded-card bg-red-500 p-3 pb-4">
+          <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light transition-transform hover:-translate-y-1">
             <svg aria-hidden="true" class="h-14 w-14 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16c0-5 3.5-9 8-9s8 4 8 9"></path><circle cx="9" cy="12" r="1"></circle><circle cx="15" cy="12" r="1"></circle><path d="M7 7 5 3M17 7l2-4"></path></svg>
-            <span class="absolute left-3 top-2 font-mono text-sm text-muted">#001</span>
+            <span class="absolute left-3 top-2 font-mono text-sm text-muted border border-2px  rounded-md text-white">#001</span>
           </div>
+         
           <div class="flex items-center justify-between gap-2">
-            <h3 class="font-display text-xl font-semibold">Emberkit</h3>
-            <span class="rounded-full bg-brand-light px-3 py-1 text-sm font-bold text-ink">Feu</span>
+            <h3 class="font-display text-xl font-semibold text-white">Emberkit</h3>
+            <span class="rounded-full bg-white px-3 py-1 text-sm font-bold text-ink">Feu</span>
           </div>
           <p class="text-sm text-muted">Base · Total 309</p>
           <button type="button" class="btn-outline">Ajouter à l'équipe</button>
         </article>
 
         <!-- Carte écrite à la main : à remplacer par des cartes générées en JS (Partie 2) -->
-        <article class="flex flex-col gap-3 rounded-card bg-white p-3 pb-4">
-          <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light">
+        <article class="flex flex-col gap-3 rounded-card bg-red-500 p-3 pb-4">
+          <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light transition-transform hover:-translate-y-1">
             <svg aria-hidden="true" class="h-14 w-14 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16c0-5 3.5-9 8-9s8 4 8 9"></path><circle cx="9" cy="12" r="1"></circle><circle cx="15" cy="12" r="1"></circle><path d="M7 7 5 3M17 7l2-4"></path></svg>
-            <span class="absolute left-3 top-2 font-mono text-sm text-muted">#002</span>
+            <span class="absolute left-3 top-2 font-mono text-sm text-muted border border-2px  rounded-md text-white">#002</span>
           </div>
           <div class="flex items-center justify-between gap-2">
-            <h3 class="font-display text-xl font-semibold">Tidalix</h3>
-            <span class="rounded-full bg-brand-light px-3 py-1 text-sm font-bold text-ink">Eau</span>
+            <h3 class="font-display text-xl font-semibold text-white">Tidalix</h3>
+            <span class= "bg-white px-3 py-1 text-sm font-bold text-ink rounded-full">Eau</span>
           </div>
           <p class="text-sm text-muted">Base · Total 314</p>
           <button type="button" class="btn-outline">Ajouter à l'équipe</button>
         </article>
 
         <!-- Carte écrite à la main : à remplacer par des cartes générées en JS (Partie 2) -->
-        <article class="flex flex-col gap-3 rounded-card bg-white p-3 pb-4">
-          <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light">
+        <article class="flex flex-col gap-3 rounded-card bg-red-500 p-3 pb-4">
+          <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light transition-transform hover:-translate-y-1">
             <svg aria-hidden="true" class="h-14 w-14 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16c0-5 3.5-9 8-9s8 4 8 9"></path><circle cx="9" cy="12" r="1"></circle><circle cx="15" cy="12" r="1"></circle><path d="M7 7 5 3M17 7l2-4"></path></svg>
-            <span class="absolute left-3 top-2 font-mono text-sm text-muted">#003</span>
+            <span class="absolute left-3 top-2 font-mono text-sm text-muted border border-2px  rounded-md text-white ">#003</span>
           </div>
           <div class="flex items-center justify-between gap-2">
-            <h3 class="font-display text-xl font-semibold">Mossling</h3>
-            <span class="rounded-full bg-brand-light px-3 py-1 text-sm font-bold text-ink">Plante</span>
+            <h3 class="font-display text-xl font-semibold text-white">Mossling</h3>
+            <span class="rounded-full bg-white px-3 py-1 text-sm font-bold text-ink">Plante</span>
           </div>
           <p class="text-sm text-muted">Base · Total 318</p>
           <button type="button" class="btn-outline">Ajouter à l'équipe</button>
         </article>
 
         <!-- Carte écrite à la main : à remplacer par des cartes générées en JS (Partie 2) -->
-        <article class="flex flex-col gap-3 rounded-card bg-white p-3 pb-4">
-          <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light">
+        <article class="flex flex-col gap-3 rounded-card bg-red-500 p-3 pb-4">
+          <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light transition-transform hover:-translate-y-1">
             <svg aria-hidden="true" class="h-14 w-14 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16c0-5 3.5-9 8-9s8 4 8 9"></path><circle cx="9" cy="12" r="1"></circle><circle cx="15" cy="12" r="1"></circle><path d="M7 7 5 3M17 7l2-4"></path></svg>
-            <span class="absolute left-3 top-2 font-mono text-sm text-muted">#004</span>
+            <span class="absolute left-3 top-2 font-mono text-sm text-muted border border-2px  rounded-md text-white ">#004</span>
           </div>
           <div class="flex items-center justify-between gap-2">
-            <h3 class="font-display text-xl font-semibold">Voltmaw</h3>
-            <span class="rounded-full bg-brand-light px-3 py-1 text-sm font-bold text-ink">Électrik</span>
+            <h3 class="font-display text-xl font-semibold text-white">Voltmaw</h3>
+            <span class="rounded-full bg-white px-3 py-1 text-sm font-bold text-ink">Électrik</span>
           </div>
           <p class="text-sm text-muted">Niveau 1 · Total 405</p>
           <button type="button" class="btn-outline">Ajouter à l'équipe</button>
         </article>
 
         <!-- Carte écrite à la main : à remplacer par des cartes générées en JS (Partie 2) -->
-        <article class="flex flex-col gap-3 rounded-card bg-white p-3 pb-4">
-          <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light">
+        <article class="flex flex-col gap-3 rounded-card bg-red-500 p-3 pb-4">
+          <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light transition-transform hover:-translate-y-1">
             <svg aria-hidden="true" class="h-14 w-14 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16c0-5 3.5-9 8-9s8 4 8 9"></path><circle cx="9" cy="12" r="1"></circle><circle cx="15" cy="12" r="1"></circle><path d="M7 7 5 3M17 7l2-4"></path></svg>
-            <span class="absolute left-3 top-2 font-mono text-sm text-muted">#005</span>
+            <span class="absolute left-3 top-2 font-mono text-sm text-muted border border-2px  rounded-md text-white ">#005</span>
           </div>
           <div class="flex items-center justify-between gap-2">
-            <h3 class="font-display text-xl font-semibold">Frostail</h3>
-            <span class="rounded-full bg-brand-light px-3 py-1 text-sm font-bold text-ink">Glace</span>
+            <h3 class="font-display text-xl font-semibold text-white">Frostail</h3>
+            <span class="rounded-full bg-white px-3 py-1 text-sm font-bold text-ink">Glace</span>
           </div>
           <p class="text-sm text-muted">Niveau 1 · Total 420</p>
           <button type="button" class="btn-outline">Ajouter à l'équipe</button>
         </article>
 
         <!-- Carte écrite à la main : à remplacer par des cartes générées en JS (Partie 2) -->
-        <article class="flex flex-col gap-3 rounded-card bg-white p-3 pb-4">
-          <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light">
+        <article class="flex flex-col gap-3 rounded-card bg-red-500 p-3 pb-4">
+          <div class="relative flex h-36 items-center justify-center rounded-xl bg-brand-light transition-transform hover:-translate-y-1">
             <svg aria-hidden="true" class="h-14 w-14 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16c0-5 3.5-9 8-9s8 4 8 9"></path><circle cx="9" cy="12" r="1"></circle><circle cx="15" cy="12" r="1"></circle><path d="M7 7 5 3M17 7l2-4"></path></svg>
-            <span class="absolute left-3 top-2 font-mono text-sm text-muted">#006</span>
+            <span class="absolute left-3 top-2 font-mono text-sm text-muted border border-2px  rounded-md text-white">#006</span>
           </div>
           <div class="flex items-center justify-between gap-2">
-            <h3 class="font-display text-xl font-semibold">Duskwing</h3>
-            <span class="rounded-full bg-brand-light px-3 py-1 text-sm font-bold text-ink">Ténèbres</span>
+            <h3 class="font-display text-xl font-semibold text-white">Duskwing</h3>
+            <span class="rounded-full bg-white px-3 py-1 text-sm font-bold text-ink">Ténèbres</span>
           </div>
           <p class="text-sm text-muted">Niveau 2 · Total 525</p>
           <button type="button" class="btn-outline">Ajouter à l'équipe</button>
@@ -144,7 +156,7 @@
       <aside class="flex w-[420px] shrink-0 flex-col gap-6">
 
         <!-- ===================== PANNEAU DE DÉTAIL ===================== -->
-        <section id="detail" aria-label="Détail de la créature" class="flex flex-col gap-4 rounded-card border-2 border-ink bg-white p-6">
+        <section id="detail" aria-label="Détail de la créature" class=" hidden gap-4 rounded-card border-2 border-ink bg-white p-6">
           <div class="flex items-center justify-between">
             <span class="font-mono text-sm text-muted">#003 · Détail</span>
             <button type="button" aria-label="Fermer le détail" class="btn-outline w-11 px-0">✕</button>
@@ -153,7 +165,7 @@
             <svg aria-hidden="true" class="h-20 w-20 text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16c0-5 3.5-9 8-9s8 4 8 9"></path><circle cx="9" cy="12" r="1"></circle><circle cx="15" cy="12" r="1"></circle><path d="M7 7 5 3M17 7l2-4"></path></svg>
           </div>
           <div class="flex items-center justify-between">
-            <h2 class="font-display text-3xl font-extrabold">Mossling</h2>
+            <h2 class="font-display text-3xl font-extrabold ">Mossling</h2>
             <span class="rounded-full bg-brand-light px-3 py-1 text-sm font-bold">Plante</span>
           </div>
           <p class="text-gray-700">Une créature calme qui dort sous les feuilles mortes et se réveille quand il pleut.</p>
@@ -165,15 +177,48 @@
           <button type="button" class="btn-primary">Ajouter à l'équipe</button>
         </section>
 
-        <!-- ===================== MON ÉQUIPE (INCOMPLÈTE) ===================== -->
-        <section id="team" aria-label="Mon équipe" class="rounded-card bg-white p-6">
-          <h2 class="font-display text-2xl font-extrabold">Mon équipe</h2>
-          <!-- TODO (Partie 1) : terminez cette section en suivant la maquette :
-               compteur x/6, 6 emplacements (vides ou remplis), message de règles. -->
-        </section>
 
       </aside>
     </div>
+     <!-- ===================== MON ÉQUIPE (INCOMPLÈTE) ===================== -->
+        <section id="team" aria-label="Mon équipe" class="rounded-card bg-white p-6">
+         <div class="">
+         
+          <h2 class="font-display text-2xl font-extrabold text-center pb-10">Mon équipe</h2>
+        <div class="grid grid-cols-2 h-40 rounded-lg gap-2">
+         
+          <div class="rounded-lg border border-5px  ">
+          <p>first div</p>
+         </div>
+         
+         <div class=" rounded-lg border border-5px">
+          <p>second div</p>
+         </div>
+        
+         <div class=" rounded-lg border border-5px">
+          <p>third div</p>
+         </div>
+
+         <div class="rounded-lg border border-5px">
+          <p>fourth div</p>
+         </div>
+
+         <div class="rounded-lg border border-5px">
+          <p>five div</p>
+         </div>
+
+         <div class="rounded-lg border border-5px">
+          <p>six div</p>
+         </div>
+
+         </div>
+         </div>
+         
+        
+          
+          <!-- TODO (Partie 1) : terminez cette section en suivant la maquette :
+               compteur x/6, 6 emplacements (vides ou remplis), message de règles. -->
+        </section>
 
     <!-- ===================== FORMULAIRE DE CRÉATION ===================== -->
     <section id="create" aria-label="Nouvelle créature" class="flex flex-col gap-6 rounded-card bg-white p-8">

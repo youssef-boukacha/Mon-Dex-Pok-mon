@@ -1,19 +1,26 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+@import "tailwindcss";
+
+/* Couleurs personnalisées */
+@theme {
+  --color-brand: #dc2626;
+  --color-ink: #172554;
+  --color-line: #e2e8f0;
+}
 
 @layer components {
+
   /* Bouton principal */
   .btn-primary {
     @apply h-12 px-6 rounded-xl bg-brand text-white font-bold;
   }
 
-  /* Bouton secondaire (contour) */
+  /* Bouton secondaire */
   .btn-outline {
     @apply h-11 px-4 rounded-xl border-2 border-ink bg-white text-ink font-bold outline-none;
   }
 
-  /* Bouton de filtre par type */
+  /* Bouton de filtre */
   .chip {
     @apply h-11 px-5 rounded-full border-2 border-line bg-white text-ink font-bold outline-none;
   }
