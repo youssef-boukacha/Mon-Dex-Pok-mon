@@ -14,11 +14,11 @@
 
 const grid = document.getElementById("grid");
 
-function displayCreatures() {
+function displayCreatures(list) {
 
   grid.innerHTML = "";
 
-  creatures.forEach(function(creature) {
+  list.forEach(function(creature) {
 
     grid.innerHTML += `
       <div   class="card  bg-white rounded-xl p-5 shadow-md" data-id="${creature.id}">
@@ -49,14 +49,13 @@ function displayCreatures() {
 
 }
 
-displayCreatures();
-
+displayCreatures(creatures);
 // -------------------------------------------------------------
 // 2. DÉTAIL
 // Un clic sur une carte ouvre le panneau de détail :
 // image, description, et statistiques affichées en barres.
 // -------------------------------------------------------------
- function details (){
+
     
 
 
@@ -120,14 +119,14 @@ function details() {
   });
 }
 
-details();
+
 
 
 // زر إغلاق panneau
 document.getElementById("close-detail").addEventListener("click", function() {
   detail.classList.add("hidden");
 });
-}
+
  details ()
  
  
@@ -137,6 +136,21 @@ document.getElementById("close-detail").addEventListener("click", function() {
 // La liste se met à jour pendant la saisie d'un nom
 // (sans tenir compte des majuscules).
 // -------------------------------------------------------------
+function recherche (){
+ const search = document.getElementById("search");
+
+search.addEventListener("input", function() {
+    const text = search.value.toLowerCase();
+
+    const result = creatures.filter(function(creature) {
+        return creature.name.toLowerCase().includes(text);
+    });
+
+    displayCreatures(result);
+  
+});
+}
+recherche();
 
 
 // -------------------------------------------------------------
