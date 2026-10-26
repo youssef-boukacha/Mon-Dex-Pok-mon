@@ -12,13 +12,125 @@
 // construisez la grille à partir du tableau `creatures`.
 // -------------------------------------------------------------
 
+const grid = document.getElementById("grid");
+
+function displayCreatures() {
+
+  grid.innerHTML = "";
+
+  creatures.forEach(function(creature) {
+
+    grid.innerHTML += `
+      <div   class="card  bg-white rounded-xl p-5 shadow-md" data-id="${creature.id}">
+     <p>${creature.id}</p>
+       
+     <img src="${creature.image}" alt="${creature.name}">
+
+        <div class="flex justify-between" >
+        <h2 class="text-xl font-bold">
+          ${creature.name}
+        </h2>
+          <span class="bg-[#969696]  rounded-xl">${creature.type}</span>
+        </div>
+
+        <p>${creature.level}</p>
+        
+        <div class= "text-center p-8"> 
+         <button  type = "button"  class="button border-2 rounded-md  bg-[#EBFBFF]  hover:bg-sky-700" > Ajouter à l'équipe </button> 
+        </div>
+
+      </div>
+      
+    `;
+
+  }
+);
+
+
+}
+
+displayCreatures();
 
 // -------------------------------------------------------------
 // 2. DÉTAIL
 // Un clic sur une carte ouvre le panneau de détail :
 // image, description, et statistiques affichées en barres.
 // -------------------------------------------------------------
+ function details (){
+    
 
+
+const detail = document.getElementById("detail");
+
+function details() {
+  grid.addEventListener("click", function(event) {
+
+    // ما نفتحوش التفاصيل إلا كان الضغط على زر الفريق
+    if (event.target.closest(".button")) {
+      return;
+    }
+
+    // نلقاو الكارت اللي تضغط عليها المستخدم
+    const card = event.target.closest(".card");
+
+    if (!card) {
+      return;
+    }
+
+    // نجيبو ID ديال Pokémon
+    const id = card.dataset.id;
+
+    // نقلبو على Pokémon فـ Array
+    const creature = creatures.find(function(creature) {
+      return creature.id === id;
+    });
+
+    if (!creature) {
+      return;
+    }
+
+    // نعمرّو panneau بالمعلومات
+    document.getElementById("detail-id").textContent = creature.id;
+    document.getElementById("detail-name").textContent = creature.name;
+    document.getElementById("detail-type").textContent = creature.type;
+    document.getElementById("detail-description").textContent = creature.description;
+
+    const image = document.getElementById("detail-image");
+    image.src = creature.image;
+    image.alt = creature.name;
+
+    const hp = creature.stats.hp;
+    const attack = creature.stats.attack;
+    const defence = creature.stats.defence;
+
+    document.getElementById("detail-hp").textContent = hp;
+    document.getElementById("detail-attack").textContent = attack;
+    document.getElementById("detail-defence").textContent = defence;
+
+    // عرض الإحصائيات على شكل barres
+    document.getElementById("bar-hp").style.width = ((hp/255) *100)+"%";
+    document.getElementById("bar-attack").style.width = ((attack/190)*100)+"%";
+    document.getElementById("bar-defence").style.width =( (defence/230)*100)+"%";
+
+    // نظهرو panneau
+    detail.classList.remove("hidden");
+
+    // نهبطو للـ panneau باش يبان للمستخدم
+    detail.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
+}
+
+details();
+
+
+// زر إغلاق panneau
+document.getElementById("close-detail").addEventListener("click", function() {
+  detail.classList.add("hidden");
+});
+}
+ details ()
+ 
+ 
 
 // -------------------------------------------------------------
 // 3. RECHERCHE

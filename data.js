@@ -98,7 +98,7 @@ id: "#009",
   type: "Glace",                                  
    level: "Stade spécial",                                
    stats: { hp:90, attack:70, defence: 80},  
-   image: "hhttps://www.pokebip.com/pokedex-images/300/87.png?v=2.2",         
+   image: "https://www.pokebip.com/pokedex-images/300/87.png?v=2.2",         
    description: "Une courte description."    
 },
 {
@@ -127,8 +127,5 @@ id: "#012",
    stats: { hp:60, attack:140, defence: 105},  
    image: "https://www.pokebip.com/pokedex-images/300/10231.png?v=2.3",         
    description: "Une courte description."    
-},
-
-
-
+  },
 ];
