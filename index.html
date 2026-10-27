@@ -152,40 +152,16 @@
 </section>
 
      <!-- ===================== MON ÉQUIPE (INCOMPLÈTE) ===================== -->
-        <section id="team" aria-label="Mon équipe" class="rounded-card  p-6 bg-[url('../images/bg_projet.jpg')] w-full bg-cover" >
-         <div class="px-4">
-         
+        <section id="team" aria-label="Mon équipe" class="rounded-card  p-6 bg-[url('../images/bg_projet.jpg')] w-full h-400 lg:h-160 bg-cover" >
+        
           <h2 class="font-display text-2xl font-extrabold text-center pb-10">Mon équipe</h2>
-        <div class="grid grid-cols-2 h-40 rounded-lg gap-2">
          
-          <div class="rounded-lg border border-5px  ">
-          <p>first div</p>
-         </div>
+          <div id="team-list" class="grid h-20 rounded-lg gap-6 lg:grid lg:grid-cols-3 lg:h-20 lg:rounded-lg lg:gap-6"></div>
+
          
-         <div class=" rounded-lg border border-5px">
-          <p>second div</p>
-         </div>
-        
-         <div class=" rounded-lg border border-5px">
-          <p>third div</p>
-         </div>
-
-         <div class="rounded-lg border border-5px">
-          <p>fourth div</p>
-         </div>
-
-         <div class="rounded-lg border border-5px">
-          <p>five div</p>
-         </div>
-
-         <div class="rounded-lg border border-5px">
-          <p>six div</p>
-         </div>
-
-         </div>
-         </div>
          
-        
+                
+
           
           <!-- TODO (Partie 1) : terminez cette section en suivant la maquette :
                compteur x/6, 6 emplacements (vides ou remplis), message de règles. -->
@@ -199,44 +175,44 @@
       </div>
       <form id="creature-form" novalidate class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
         <label class="flex flex-col gap-1 text-sm font-bold">Numéro
-          <input name="id" type="text" placeholder="#010" class="field font-normal">
-          <span class="error-message text-sm font-normal text-muted"></span>
+          <input name="id" type="text" placeholder="#010" id="id" class="field font-normal">
+          <span class="error-message text-sm font-normal text-muted" id="id-error"></span>
         </label>
         <label class="flex flex-col gap-1 text-sm font-bold">Nom
-          <input name="name" type="text" placeholder="Nom de la créature" class="field font-normal">
-          <span class="error-message text-sm font-normal text-muted"></span>
+          <input name="name" type="text" id="name" placeholder="Nom de la créature" class="field font-normal">
+          <span class="error-message text-sm font-normal text-muted" id="name-error"></span>
         </label>
         <label class="flex flex-col gap-1 text-sm font-bold">Type
-          <select name="type" class="field font-normal">
+          <select name="type" class="field font-normal" id="select">
             <option value="">Choisir un type</option>
             <option>Feu</option><option>Eau</option><option>Plante</option>
             <option>Électrik</option><option>Glace</option><option>Ténèbres</option>
           </select>
-          <span class="error-message text-sm font-normal text-muted"></span>
+          <span class="error-message text-sm font-normal text-muted" id="type-error"></span>
         </label>
         <label class="flex flex-col gap-1 text-sm font-bold">Niveau
-          <input name="level" type="text" placeholder="Base, Niveau 1…" class="field font-normal">
-          <span class="error-message text-sm font-normal text-muted"></span>
+          <input name="level" type="text" id="level" placeholder="Base, Niveau 1…" class="field font-normal">
+          <span class="error-message text-sm font-normal text-muted"id="level-error"></span>
         </label>
-        <label class="flex flex-col gap-1 text-sm font-bold">Statistique 1
-          <input name="stat1" type="text" placeholder="0 à 999" class="field font-normal">
-          <span class="error-message text-sm font-normal text-muted"></span>
+        <label class="flex flex-col gap-1 text-sm font-bold">hp
+          <input name="stat1" type="text" placeholder="0 à 999" id="stat1" class="field font-normal">
+          <span class="error-message text-sm font-normal text-muted" id="hp-error"></span>
         </label>
-        <label class="flex flex-col gap-1 text-sm font-bold">Statistique 2
-          <input name="stat2" type="text" placeholder="0 à 999" class="field font-normal">
-          <span class="error-message text-sm font-normal text-muted"></span>
+        <label class="flex flex-col gap-1 text-sm font-bold"> attack
+          <input name="stat2" type="text" placeholder="0 à 999" id="stat2" class="field font-normal">
+          <span class="error-message text-sm font-normal text-muted" id="attack-error"></span>
         </label>
-        <label class="flex flex-col gap-1 text-sm font-bold">Statistique 3
-          <input name="stat3" type="text" placeholder="0 à 999" class="field font-normal">
-          <span class="error-message text-sm font-normal text-muted"></span>
+        <label class="flex flex-col gap-1 text-sm font-bold">defence
+          <input name="stat3" type="text" placeholder="0 à 999" id="stat3" class="field font-normal">
+          <span class="error-message text-sm font-normal text-muted" id="defence-error"></span>
         </label>
         <label class="flex flex-col gap-1 text-sm font-bold">Lien de l'image
-          <input name="image" type="text" placeholder="https://…/image.png" class="field font-normal">
-          <span class="error-message text-sm font-normal text-muted"></span>
+          <input name="image" type="text" placeholder="https://…/image.png" id="img" class="field font-normal">
+          <span class="error-message text-sm font-normal text-muted" id="img-error"></span>
         </label>
         <label class="flex flex-col gap-1 text-sm font-bold md:col-span-2 lg:col-span-4">Description
-          <textarea name="description" rows="3" placeholder="10 à 200 caractères" class="rounded-xl border-2 border-line p-3 font-normal outline-none"></textarea>
-          <span class="error-message text-sm font-normal text-muted"></span>
+          <textarea name="description" rows="3" placeholder="10 à 200 caractères" id="desc" class="rounded-xl border-2 border-line p-3 font-normal outline-none"></textarea>
+          <span class="error-message text-sm font-normal text-muted" id="desc-error"></span>
         </label>
         <div class="flex flex-wrap justify-end gap-3 md:col-span-2 lg:col-span-4">
           <button type="reset" class="btn-outline px-6">Effacer</button>

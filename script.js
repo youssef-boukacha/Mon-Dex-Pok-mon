@@ -1,188 +1,619 @@
-// =============================================================
-// script.js — Mon Dex
-// =============================================================
-// Les données viennent de data.js (la constante `creatures`).
-// Écrivez votre code ici, fonctionnalité par fonctionnalité.
-// Une carte GitHub Projects et au moins un commit par fonctionnalité.
+
+ // =============================================================
+ // script.js — Mon Dex
+ // =============================================================
+ // Data comes from data.js (the `creatures` array).
+ // Implement each feature in this file.
+ // Create a GitHub Projects card and at least one commit per feature.
 
 
-// -------------------------------------------------------------
-// 1. AFFICHAGE
-// Supprimez les cartes écrites à la main dans index.html et
-// construisez la grille à partir du tableau `creatures`.
-// -------------------------------------------------------------
+ // -------------------------------------------------------------
+ // 1. DISPLAY
+ // Remove manually written cards from index.html and
+ // build the grid from the `creatures` array.
+ // -------------------------------------------------------------
 
-const grid = document.getElementById("grid");
+ const grid = document.getElementById("grid");
 
-function displayCreatures(list) {
+ function displayCreatures(list) {
 
-  grid.innerHTML = "";
+   grid.innerHTML = "";
 
-  list.forEach(function(creature) {
+   list.forEach(function(creature) {
 
-    grid.innerHTML += `
-      <div   class="card  bg-white rounded-xl p-5 shadow-md" data-id="${creature.id}">
-     <p>${creature.id}</p>
-       
-     <img src="${creature.image}" alt="${creature.name}">
+     grid.innerHTML += `
+       <div class="card bg-white rounded-xl p-5 shadow-md" data-id="${creature.id}">
+         <p>${creature.id}</p>
 
-        <div class="flex justify-between" >
-        <h2 class="text-xl font-bold">
-          ${creature.name}
-        </h2>
-          <span class="bg-[#969696]  rounded-xl">${creature.type}</span>
-        </div>
+         <img src="${creature.image}" alt="${creature.name}">
 
-        <p>${creature.level}</p>
-        
-        <div class= "text-center p-8"> 
-         <button  type = "button"  class="button border-2 rounded-md  bg-[#EBFBFF]  hover:bg-sky-700" > Ajouter à l'équipe </button> 
-        </div>
+         <div class="flex justify-between">
+           <h2 class="text-xl font-bold">
+             ${creature.name}
+           </h2>
+           <span class="bg-[#969696] rounded-xl">${creature.type}</span>
+         </div>
 
-      </div>
-      
-    `;
+         <p>${creature.level}</p>
 
-  }
-);
+         <button
+           type="button"
+           class="button add-to-team border-2 rounded-md bg-[#EBFBFF] hover:bg-sky-700"
+           data-id="${creature.id}">
+           Ajouter à l'équipe
+         </button>
 
+       </div>
+     `;
 
-}
+   });
 
-displayCreatures(creatures);
-// -------------------------------------------------------------
-// 2. DÉTAIL
-// Un clic sur une carte ouvre le panneau de détail :
-// image, description, et statistiques affichées en barres.
-// -------------------------------------------------------------
+ }
 
-    
+ displayCreatures(creatures);
 
 
-const detail = document.getElementById("detail");
+ // -------------------------------------------------------------
+ // 2. DETAILS
+ // Clicking a card opens the detail panel:
+ // image, description, and statistics displayed as bars.
+ // -------------------------------------------------------------
 
-function details() {
-  grid.addEventListener("click", function(event) {
+ const detail = document.getElementById("detail");
 
-    // ما نفتحوش التفاصيل إلا كان الضغط على زر الفريق
-    if (event.target.closest(".button")) {
-      return;
-    }
+ function details() {
 
-    // نلقاو الكارت اللي تضغط عليها المستخدم
-    const card = event.target.closest(".card");
+   grid.addEventListener("click", function(event) {
 
-    if (!card) {
-      return;
-    }
+     // Do not open details when the team button is clicked.
+     if (event.target.closest(".button")) {
+       return;
+     }
 
-    // نجيبو ID ديال Pokémon
-    const id = card.dataset.id;
+     // Find the clicked card.
+     const card = event.target.closest(".card");
 
-    // نقلبو على Pokémon فـ Array
-    const creature = creatures.find(function(creature) {
-      return creature.id === id;
-    });
+     if (!card) {
+       return;
+     }
 
-    if (!creature) {
-      return;
-    }
+     // Get the creature ID.
+     const id = card.dataset.id;
 
-    // نعمرّو panneau بالمعلومات
-    document.getElementById("detail-id").textContent = creature.id;
-    document.getElementById("detail-name").textContent = creature.name;
-    document.getElementById("detail-type").textContent = creature.type;
-    document.getElementById("detail-description").textContent = creature.description;
+     // Find the creature in the array.
+     const creature = creatures.find(function(creature) {
+       return creature.id === id;
+     });
 
-    const image = document.getElementById("detail-image");
-    image.src = creature.image;
-    image.alt = creature.name;
+     if (!creature) {
+       return;
+     }
 
-    const hp = creature.stats.hp;
-    const attack = creature.stats.attack;
-    const defence = creature.stats.defence;
+     // Fill the detail panel with creature data.
+     document.getElementById("detail-id").textContent = creature.id;
+     document.getElementById("detail-name").textContent = creature.name;
+     document.getElementById("detail-type").textContent = creature.type;
+     document.getElementById("detail-description").textContent = creature.description;
 
-    document.getElementById("detail-hp").textContent = hp;
-    document.getElementById("detail-attack").textContent = attack;
-    document.getElementById("detail-defence").textContent = defence;
+     const image = document.getElementById("detail-image");
+     image.src = creature.image;
+     image.alt = creature.name;
 
-    // عرض الإحصائيات على شكل barres
-    document.getElementById("bar-hp").style.width = ((hp/255) *100)+"%";
-    document.getElementById("bar-attack").style.width = ((attack/190)*100)+"%";
-    document.getElementById("bar-defence").style.width =( (defence/230)*100)+"%";
+     const hp = creature.stats.hp;
+     const attack = creature.stats.attack;
+     const defence = creature.stats.defence;
 
-    // نظهرو panneau
-    detail.classList.remove("hidden");
+     document.getElementById("detail-hp").textContent = hp;
+     document.getElementById("detail-attack").textContent = attack;
+     document.getElementById("detail-defence").textContent = defence;
 
-    // نهبطو للـ panneau باش يبان للمستخدم
-    detail.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  });
-}
+     // Display statistics as progress bars.
+     document.getElementById("bar-hp").style.width = ((hp / 255) * 100) + "%";
+     document.getElementById("bar-attack").style.width = ((attack / 190) * 100) + "%";
+     document.getElementById("bar-defence").style.width = ((defence / 230) * 100) + "%";
+
+     // Show the detail panel.
+     detail.classList.remove("hidden");
+
+     // Scroll to the detail panel.
+     detail.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+   });
+
+ }
+
+ // Close the detail panel.
+ document.getElementById("close-detail").addEventListener("click", function() {
+   detail.classList.add("hidden");
+ });
+
+ details();
 
 
+ // -------------------------------------------------------------
+ // 3. SEARCH
+ // Update the list while typing a name (case-insensitive).
+ // -------------------------------------------------------------
+
+ function recherche() {
+
+   const search = document.getElementById("search");
+
+   search.addEventListener("input", function() {
+
+     const text = search.value.toLowerCase();
+
+     const result = creatures.filter(function(creature) {
+       return creature.name.toLowerCase().includes(text);
+     });
+
+     displayCreatures(result);
+
+   });
+
+ }
 
 
-// زر إغلاق panneau
-document.getElementById("close-detail").addEventListener("click", function() {
-  detail.classList.add("hidden");
-});
+ // -------------------------------------------------------------
+ // 4. FILTER
+ // Type buttons show creatures matching the selected type.
+ // "Tous" resets the filter.
+ // Search and filter work together.
+ // -------------------------------------------------------------
 
- details ()
- 
- 
-
-// -------------------------------------------------------------
-// 3. RECHERCHE
-// La liste se met à jour pendant la saisie d'un nom
-// (sans tenir compte des majuscules).
-// -------------------------------------------------------------
-function recherche (){
  const search = document.getElementById("search");
+ const filters = document.getElementById("filters");
+ const filterButtons = filters.querySelectorAll("button");
+ const typeSelect = document.querySelector("#Recherche select");
 
-search.addEventListener("input", function() {
-    const text = search.value.toLowerCase();
+ // Selected type.
+ let selectedType = "Tous";
 
-    const result = creatures.filter(function(creature) {
-        return creature.name.toLowerCase().includes(text);
-    });
+ // Update the list using search and filter.
+ function updateCreatures() {
 
-    displayCreatures(result);
-  
-});
-}
-recherche();
+   const text = search.value.toLowerCase();
+
+   const result = creatures.filter(function(creature) {
+
+     const matchesName = creature.name
+       .toLowerCase()
+       .includes(text);
+
+     const matchesType =
+       selectedType === "Tous" ||
+       creature.type
+         .toLowerCase()
+         .includes(selectedType.toLowerCase());
+
+     return matchesName && matchesType;
+
+   });
+
+   displayCreatures(result);
+ }
+
+ // Search while typing.
+ search.addEventListener("input", function() {
+   updateCreatures();
+ });
+
+ // Desktop type filter buttons.
+ filters.addEventListener("click", function(event) {
+
+   const button = event.target.closest("button");
+
+   if (!button) {
+     return;
+   }
+
+   selectedType = button.textContent.trim();
+
+   // Update the selected button style.
+   filterButtons.forEach(function(btn) {
+     btn.classList.remove("bg-ink", "text-white", "border-ink");
+   });
+
+   button.classList.add("bg-ink", "text-white", "border-ink");
+
+   updateCreatures();
+
+ });
+
+ // Mobile type dropdown.
+ typeSelect.addEventListener("change", function() {
+
+   selectedType = typeSelect.value === " Select"
+     ? "Tous"
+     : typeSelect.value;
+
+   updateCreatures();
+
+ });
 
 
-// -------------------------------------------------------------
-// 4. FILTRE
-// Les boutons de type n'affichent que les créatures de ce type ;
-// « Tous » réinitialise le filtre.
-// La recherche et le filtre fonctionnent ENSEMBLE.
-// -------------------------------------------------------------
+ // -------------------------------------------------------------
+ // 5. CREATE A CREATURE
+ // Validate each form field using a regular expression.
+ // Display error messages below invalid fields.
+ // -------------------------------------------------------------
+
+ const cree = document.getElementById("creature-form");
+
+ const numero = document.getElementById("id");
+ const nom = document.getElementById("name");
+ const type = document.getElementById("select");
+ const niveau = document.getElementById("level");
+ const statistiques1 = document.getElementById("stat1");
+ const statistiques2 = document.getElementById("stat2");
+ const statistiques3 = document.getElementById("stat3");
+ const urlImage = document.getElementById("img");
+ const description = document.getElementById("desc");
+
+ // Error messages
+ const idError = document.getElementById("id-error");
+ const nameError = document.getElementById("name-error");
+ const typeError = document.getElementById("type-error");
+ const levelError = document.getElementById("level-error");
+ const stat1Error = document.getElementById("hp-error");
+ const stat2Error = document.getElementById("attack-error");
+ const stat3Error = document.getElementById("defence-error");
+ const imgError = document.getElementById("img-error");
+ const descError = document.getElementById("desc-error");
+
+ // Regex
+ const NameRegex = /^[A-Za-z]+$/;
+ const idRegex = /^#[0-9]{1,3}$/;
+ const nivRegex = /^[A-Za-z0-9]+$/;
+ const statRegex = /^[0-9]{1,3}$/;
+ const urlRegex = /^https?:\/\/.+\.(jpg|jpeg|png|webp)$/i;
+ const descriptionRegex = /^[A-Za-z ]{10,100}$/;
+
+ // Change the border color.
+ function verifierChamp(champ, valide) {
+
+   champ.classList.remove("border-red-500", "border-green-500");
+   champ.classList.add("border-2");
+
+   if (valide) {
+     champ.classList.add("border-green-500");
+   } else {
+     champ.classList.add("border-red-500");
+   }
+
+ }
+
+ // Validate while typing.
+ function verifierPendantSaisie(champ, regex, messageErreur, verifierId = false) {
+
+   champ.addEventListener("input", function() {
+
+     const valeur = champ.value.trim();
+
+     if (valeur === "") {
+       champ.classList.remove("border-red-500", "border-green-500", "border-2");
+       messageErreur.textContent = "";
+       return;
+     }
+
+     let valide = regex.test(valeur);
+
+     if (verifierId && valide) {
+       valide = !creatures.some(function(creature) {
+         return creature.id === valeur;
+       });
+     }
+
+     verifierChamp(champ, valide);
+
+     if (!valide) {
+
+       if (verifierId && regex.test(valeur)) {
+         messageErreur.textContent = "Ce numéro existe déjà.";
+       } else {
+         messageErreur.textContent = "La valeur saisie est invalide.";
+       }
+
+     } else {
+       messageErreur.textContent = "";
+     }
+
+   });
+
+ }
+
+ // Attach validation to each field.
+ verifierPendantSaisie(numero, idRegex, idError, true);
+ verifierPendantSaisie(nom, NameRegex, nameError);
+ verifierPendantSaisie(niveau, nivRegex, levelError);
+ verifierPendantSaisie(statistiques1, statRegex, stat1Error);
+ verifierPendantSaisie(statistiques2, statRegex, stat2Error);
+ verifierPendantSaisie(statistiques3, statRegex, stat3Error);
+ verifierPendantSaisie(urlImage, urlRegex, imgError);
+ verifierPendantSaisie(description, descriptionRegex, descError);
+
+ // Validate the type selection.
+ type.addEventListener("change", function() {
+
+   if (type.value === "") {
+     type.classList.remove("border-red-500", "border-green-500", "border-2");
+     typeError.textContent = "";
+   } else {
+     verifierChamp(type, true);
+     typeError.textContent = "";
+   }
+
+ });
+
+ // Create a creature.
+ function CreeUneCreature() {
+
+   idError.textContent = "";
+   nameError.textContent = "";
+   typeError.textContent = "";
+   levelError.textContent = "";
+   stat1Error.textContent = "";
+   stat2Error.textContent = "";
+   stat3Error.textContent = "";
+   imgError.textContent = "";
+   descError.textContent = "";
+
+   // Validate the ID.
+   if (!idRegex.test(numero.value)) {
+     idError.textContent = "Le numéro est invalide.";
+     verifierChamp(numero, false);
+     return;
+   }
+
+   if (creatures.some(function(creature) {
+     return creature.id === numero.value;
+   })) {
+     idError.textContent = "Ce numéro existe déjà.";
+     verifierChamp(numero, false);
+     return;
+   }
+
+   verifierChamp(numero, true);
+
+   // Validate the name.
+   if (!NameRegex.test(nom.value)) {
+     nameError.textContent = "Le nom doit contenir uniquement des lettres anglaises.";
+     verifierChamp(nom, false);
+     return;
+   }
+
+   verifierChamp(nom, true);
+
+   // Validate the type.
+   if (type.value === "") {
+     typeError.textContent = "Veuillez choisir un type.";
+     verifierChamp(type, false);
+     return;
+   }
+
+   verifierChamp(type, true);
+
+   // Validate the level.
+   if (!nivRegex.test(niveau.value)) {
+     levelError.textContent = "Le niveau contient des caractères invalides.";
+     verifierChamp(niveau, false);
+     return;
+   }
+
+   verifierChamp(niveau, true);
+
+   // Validate the statistics.
+   if (!statRegex.test(statistiques1.value)) {
+     stat1Error.textContent = "Entrez un nombre de 1 à 3 chiffres.";
+     verifierChamp(statistiques1, false);
+     return;
+   }
+
+   verifierChamp(statistiques1, true);
+
+   if (!statRegex.test(statistiques2.value)) {
+     stat2Error.textContent = "Entrez un nombre de 1 à 3 chiffres.";
+     verifierChamp(statistiques2, false);
+     return;
+   }
+
+   verifierChamp(statistiques2, true);
+
+   if (!statRegex.test(statistiques3.value)) {
+     stat3Error.textContent = "Entrez un nombre de 1 à 3 chiffres.";
+     verifierChamp(statistiques3, false);
+     return;
+   }
+
+   verifierChamp(statistiques3, true);
+
+   // Validate the image URL.
+   if (!urlRegex.test(urlImage.value)) {
+     imgError.textContent = "L'image doit avoir une URL finissant par jpg, jpeg, png ou webp.";
+     verifierChamp(urlImage, false);
+     return;
+   }
+
+   verifierChamp(urlImage, true);
+
+   // Validate the description.
+   if (!descriptionRegex.test(description.value)) {
+     descError.textContent = "La description doit contenir 10 à 100 lettres ou espaces anglais.";
+     verifierChamp(description, false);
+     return;
+   }
+
+   verifierChamp(description, true);
+
+   // Create the creature object.
+   const AddCreatures = {
+     id: numero.value,
+     name: nom.value,
+     type: type.value,
+     level: niveau.value,
+     stats: {
+       hp: Number(statistiques1.value),
+       attack: Number(statistiques2.value),
+       defence: Number(statistiques3.value)
+     },
+     image: urlImage.value,
+     description: description.value
+   };
+
+   // Add and display the creature.
+   creatures.push(AddCreatures);
+   displayCreatures(creatures);
+
+   // Reset the form.
+   cree.reset();
+
+   // Reset border colors.
+   const champs = [
+     numero, nom, type, niveau,
+     statistiques1, statistiques2, statistiques3,
+     urlImage, description
+   ];
+
+   champs.forEach(function(champ) {
+     champ.classList.remove("border-red-500", "border-green-500", "border-2");
+   });
+
+   // Clear error messages.
+   idError.textContent = "";
+   nameError.textContent = "";
+   typeError.textContent = "";
+   levelError.textContent = "";
+   stat1Error.textContent = "";
+   stat2Error.textContent = "";
+   stat3Error.textContent = "";
+   imgError.textContent = "";
+   descError.textContent = "";
+
+ }
+
+ // Listen for form submission.
+ cree.addEventListener("submit", function(event) {
+   event.preventDefault();
+   CreeUneCreature();
+ });
 
 
-// -------------------------------------------------------------
-// 5. CRÉER UNE CRÉATURE
-// Validez chaque champ du formulaire avec une expression régulière
-// (voir le tableau du brief). Affichez le message d'erreur sous le
-// champ, et n'ajoutez jamais une créature invalide.
-// -------------------------------------------------------------
+ // -------------------------------------------------------------
+ // 6. MY TEAM
+ // Handle Add and Remove buttons with delegated event listeners.
+ // -------------------------------------------------------------
+
+ const team = document.getElementById("team");
+ const teamCount = document.getElementById("team-count");
+ const teamList = document.getElementById("team-list");
+
+ // Array storing the team creatures.
+ let monEquipe = [];
+
+ // Display the team.
+ function displayTeam() {
+
+   teamList.innerHTML = "";
+
+   monEquipe.forEach(function(creature) {
+
+     teamList.innerHTML += `
+       <div class="bg-white rounded-xl p-4 shadow">
+         <img
+           src="${creature.image}"
+           alt="${creature.name}"
+           class="w-24 h-24 object-contain"
+         >
+
+         <h3 class="font-bold">${creature.name}</h3>
+         <p>${creature.type}</p>
+
+         <button
+           type="button"
+           class="remove-from-team bg-red-500 text-white px-4 py-2 rounded-lg"
+           data-id="${creature.id}">
+           Retirer
+         </button>
+       </div>
+     `;
+
+   });
+
+   teamCount.textContent = monEquipe.length + "/6";
+
+ }
+
+ // One delegated listener to add creatures to the team.
+ grid.addEventListener("click", function(event) {
+
+   const bouton = event.target.closest(".add-to-team");
+
+   if (!bouton) {
+     return;
+   }
+
+   const id = bouton.dataset.id;
+
+   // Find the selected creature.
+   const creature = creatures.find(function(c) {
+     return c.id === id;
+   });
+
+   if (!creature) {
+     return;
+   }
+
+   // Prevent duplicates.
+   const existe = monEquipe.some(function(c) {
+     return c.id === id;
+   });
+
+   if (existe) {
+     alert("Cette créature est déjà dans votre équipe.");
+     return;
+   }
+
+   // Maximum of six creatures.
+   if (monEquipe.length >= 6) {
+     alert("Votre équipe est complète (6/6).");
+     return;
+   }
+
+   monEquipe.push(creature);
+   displayTeam();
+
+ });
+
+ // One delegated listener to remove creatures from the team.
+ team.addEventListener("click", function(event) {
+
+   const bouton = event.target.closest(".remove-from-team");
+
+   if (!bouton) {
+     return;
+   }
+
+   const id = bouton.dataset.id;
+
+   monEquipe = monEquipe.filter(function(creature) {
+     return creature.id !== id;
+   });
+
+   displayTeam();
+
+ });
+
+ // Initial display.
+ displayTeam();
 
 
-// -------------------------------------------------------------
-// 6. MON ÉQUIPE
-// Boutons « Ajouter à l'équipe » et « Retirer », gérés avec UN SEUL
-// écouteur sur la grille et UN SEUL sur l'équipe (délégation).
-// -------------------------------------------------------------
+ // -------------------------------------------------------------
+ // 7. TEAM RULES
+ // Maximum of six creatures, no duplicates, and clear feedback
+ // when an action is rejected, plus an (x/6) counter.
+ // -------------------------------------------------------------
 
 
-// -------------------------------------------------------------
-// 7. RÈGLES DE L'ÉQUIPE
-// 6 créatures au maximum, pas de doublon, un message clair quand
-// une action est refusée, et un compteur (x/6).
-// -------------------------------------------------------------
-
-
-// -------------------------------------------------------------
-// BONUS : LocalStorage, Fetch API, tri, comparaison
-// -------------------------------------------------------------
+ // -------------------------------------------------------------
+ // BONUS: LocalStorage, Fetch API, sorting, comparison
+ // -------------------------------------------------------------

@@ -113,7 +113,7 @@ id: "#010",
 {
 id: "#011",                                 
   name: "Spectrum",                              
-  type: "Spectre, Poison",                                  
+  type: "Spectre, Poison,Électrik",                                  
    level: "Stade spécial",                                
    stats: { hp:45, attack:50, defence: 45},  
    image: "https://www.pokebip.com/pokedex-images/300/93.png?v=2.3",         
