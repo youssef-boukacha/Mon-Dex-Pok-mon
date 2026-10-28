@@ -37,8 +37,8 @@ Puis committez `dist/output.css` : GitHub Pages ne lance pas Tailwind pour vous.
 
 ## À compléter par vous
 
-- **Univers choisi :** [Pokémon / Digimon / Yu-Gi-Oh!]
-- **Lien GitHub Pages :** [lien]
-- **Sources des images :** [liens]
+- **Univers choisi :** Pokémon
+- **Lien GitHub Pages :https://github.com/youssef-boukacha/Mon-Dex-Pok-mon
+- **Sources des images :**[ [liens]](https://www.pokebip.com/pokedex/pokemon/reptincel)
 - **Tests des expressions régulières :** [collez ici vos tests console : 2 valeurs valides et 2 invalides par expression]
 - **Bonus réalisés :** [liste]
